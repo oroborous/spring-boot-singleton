@@ -50,7 +50,7 @@ public class StressTestController {
         }
 
         // Join letters together and return the string
-        String returnValue = String.join("", sharedList);
+        String returnValue = buildOutput();
 
         // This hashcode of the controller is like its unique object
         // ID. We print it to demonstrate that the same controller
@@ -80,7 +80,7 @@ public class StressTestController {
         }
 
         // Join letters together and return the string
-        String returnValue = String.join("", sharedList);
+        String returnValue = buildOutput();
 
         // This hashcode of the controller is like its unique object
         // ID. We print it to demonstrate that the same controller
@@ -124,7 +124,7 @@ public class StressTestController {
         }
 
         // Join letters together and return the string
-        String returnValue = String.join("", sharedList);
+        String returnValue = buildOutput();
 
         // This hashcode of the controller is like its unique object
         // ID. We print it to demonstrate that the same controller
@@ -175,7 +175,7 @@ public class StressTestController {
         }
 
         // Join letters together and return the string
-        String returnValue = String.join("", nonSharedList);
+        String returnValue = buildOutput(nonSharedList);
 
         // This hashcode of the controller is like its unique object
         // ID. We print it to demonstrate that the same controller
@@ -204,5 +204,28 @@ public class StressTestController {
     private String convertToLetter(int num) {
         Character c = (char) num;
         return c.toString();
+    }
+
+    /**
+     * This method is convenient, as it already has access
+     * to 'sharedList' to do its operations. But it won't
+     * work with version 4.
+     *
+     * @return The contents of the list concatenated together
+     */
+    private String buildOutput() {
+        return String.join("", sharedList);
+    }
+
+    /**
+     * This method illustrates the correct way to share
+     * data between methods: by passing it as an argument.
+     * Version 4 passes its local list to this method
+     * for processing.
+     *
+     * @return The contents of the list concatenated together
+     */
+    private String buildOutput(List<String> theList) {
+        return String.join("", theList);
     }
 }
